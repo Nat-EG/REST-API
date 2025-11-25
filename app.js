@@ -8,6 +8,11 @@ const app = express();
 //Para que el servidor entienda JSON
 app.use(express.json()); 
 
+app.use(express.urlencoded({ extended: true }));
+
+const logger = require('morgan');
+app.use(logger('dev'));
+
 //Conexión con la BD MongoDB
 mongoose.connect(process.env.URI)
     .then(() => console.log('Conectado a MongoDB'))
